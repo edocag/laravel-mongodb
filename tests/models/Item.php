@@ -1,6 +1,6 @@
 <?php
 
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use edocag\Mongodb\Eloquent\Model as Eloquent;
 
 class Item extends Eloquent
 {

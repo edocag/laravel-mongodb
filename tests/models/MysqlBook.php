@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
-use Jenssegers\Mongodb\Eloquent\HybridRelations;
+use edocag\Mongodb\Eloquent\HybridRelations;
 
 class MysqlBook extends Eloquent
 {

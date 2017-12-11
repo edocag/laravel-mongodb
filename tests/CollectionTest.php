@@ -1,7 +1,7 @@
 <?php
 
-use Jenssegers\Mongodb\Connection;
-use Jenssegers\Mongodb\Collection;
+use edocag\Mongodb\Connection;
+use edocag\Mongodb\Collection;
 use MongoDB\Collection as MongoCollection;
 use MongoDB\BSON\ObjectID;
 

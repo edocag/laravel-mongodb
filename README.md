@@ -1,4 +1,4 @@
-Laravel MongoDB
+Laravel MongoDB Fork from jenssegers
 ===============
 
 [![Latest Stable Version](http://img.shields.io/github/release/jenssegers/laravel-mongodb.svg)](https://packagist.org/packages/jenssegers/mongodb) [![Total Downloads](http://img.shields.io/packagist/dm/jenssegers/mongodb.svg)](https://packagist.org/packages/jenssegers/mongodb) [![Build Status](http://img.shields.io/travis/jenssegers/laravel-mongodb.svg)](https://travis-ci.org/jenssegers/laravel-mongodb) [![Coverage Status](http://img.shields.io/coveralls/jenssegers/laravel-mongodb.svg)](https://coveralls.io/r/jenssegers/laravel-mongodb?branch=master) [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://www.paypal.me/jenssegers)
@@ -46,13 +46,13 @@ composer require jenssegers/mongodb
 And add the service provider in `config/app.php`:
 
 ```php
-Jenssegers\Mongodb\MongodbServiceProvider::class,
+jenssegers\Mongodb\MongodbServiceProvider::class,
 ```
 
 For usage with [Lumen](http://lumen.laravel.com), add the service provider in `bootstrap/app.php`. In this file, you will also need to enable Eloquent. You must however ensure that your call to `$app->withEloquent();` is **below** where you have registered the `MongodbServiceProvider`:
 
 ```php
-$app->register(Jenssegers\Mongodb\MongodbServiceProvider::class);
+$app->register(jenssegers\Mongodb\MongodbServiceProvider::class);
 
 $app->withEloquent();
 ```
@@ -64,7 +64,7 @@ For usage outside Laravel, check out the [Capsule manager](https://github.com/il
 ```php
 $capsule->getDatabaseManager()->extend('mongodb', function($config)
 {
-    return new Jenssegers\Mongodb\Connection($config);
+    return new jenssegers\Mongodb\Connection($config);
 });
 ```
 
@@ -75,18 +75,18 @@ Upgrading
 
 In this new major release which supports the new mongodb PHP extension, we also moved the location of the Model class and replaced the MySQL model class with a trait.
 
-Please change all `Jenssegers\Mongodb\Model` references to `Jenssegers\Mongodb\Eloquent\Model` either at the top of your model files, or your registered alias.
+Please change all `jenssegers\Mongodb\Model` references to `jenssegers\Mongodb\Eloquent\Model` either at the top of your model files, or your registered alias.
 
 ```php
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class User extends Eloquent {}
 ```
 
-If you are using hybrid relations, your MySQL classes should now extend the original Eloquent model class `Illuminate\Database\Eloquent\Model` instead of the removed `Jenssegers\Eloquent\Model`. Instead use the new `Jenssegers\Mongodb\Eloquent\HybridRelations` trait. This should make things more clear as there is only one single model class in this package.
+If you are using hybrid relations, your MySQL classes should now extend the original Eloquent model class `Illuminate\Database\Eloquent\Model` instead of the removed `jenssegers\Eloquent\Model`. Instead use the new `jenssegers\Mongodb\Eloquent\HybridRelations` trait. This should make things more clear as there is only one single model class in this package.
 
 ```php
-use Jenssegers\Mongodb\Eloquent\HybridRelations;
+use jenssegers\Mongodb\Eloquent\HybridRelations;
 
 class User extends Eloquent {
 
@@ -162,7 +162,7 @@ Eloquent
 This package includes a MongoDB enabled Eloquent class that you can use to define models for corresponding collections.
 
 ```php
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class User extends Eloquent {}
 ```
@@ -170,7 +170,7 @@ class User extends Eloquent {}
 Note that we did not tell Eloquent which collection to use for the `User` model. Just like the original Eloquent, the lower-case, plural name of the class will be used as the collection name unless another name is explicitly specified. You may specify a custom collection (alias for table) by defining a `collection` property on your model:
 
 ```php
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class User extends Eloquent {
 
@@ -182,7 +182,7 @@ class User extends Eloquent {
 **NOTE:** Eloquent will also assume that each collection has a primary key column named id. You may define a `primaryKey` property to override this convention. Likewise, you may define a `connection` property to override the name of the database connection that should be used when utilizing the model.
 
 ```php
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class MyModel extends Eloquent {
 
@@ -198,7 +198,7 @@ Everything else (should) work just like the original Eloquent model. Read more a
 You may also register an alias for the MongoDB model by adding the following to the alias array in `config/app.php`:
 
 ```php
-'Moloquent'       => Jenssegers\Mongodb\Eloquent\Model::class,
+'Moloquent'       => jenssegers\Mongodb\Eloquent\Model::class,
 ```
 
 This will allow you to use the registered alias like:
@@ -281,7 +281,7 @@ Extensions
 If you want to use Laravel's native Auth functionality, register this included service provider:
 
 ```php
-'Jenssegers\Mongodb\Auth\PasswordResetServiceProvider',
+'jenssegers\Mongodb\Auth\PasswordResetServiceProvider',
 ```
 
 This service provider will slightly modify the internal DatabaseReminderRepository to add support for MongoDB based password reminders. If you don't use password reminders, you don't have to register this service provider and everything else should work just fine.
@@ -312,7 +312,7 @@ If you want to use MongoDB to handle failed jobs, change the database in `config
 And add the service provider in `config/app.php`:
 
 ```php
-Jenssegers\Mongodb\MongodbQueueServiceProvider::class,
+jenssegers\Mongodb\MongodbQueueServiceProvider::class,
 ```
 
 ### Sentry
@@ -485,7 +485,7 @@ User::where('bmi', 30)->decrement('bmi', 1, ['category' => 'overweight']);
 When soft deleting a model, it is not actually removed from your database. Instead, a deleted_at timestamp is set on the record. To enable soft deletes for a model, apply the SoftDeletingTrait to the model:
 
 ```php
-use Jenssegers\Mongodb\Eloquent\SoftDeletes;
+use jenssegers\Mongodb\Eloquent\SoftDeletes;
 
 class User extends Eloquent {
 
@@ -684,7 +684,7 @@ Eloquent allows you to work with Carbon/DateTime objects instead of MongoDate ob
 Example:
 
 ```php
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class User extends Eloquent {
 
@@ -713,7 +713,7 @@ Supported relations are:
 Example:
 
 ```php
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class User extends Eloquent {
 
@@ -728,7 +728,7 @@ class User extends Eloquent {
 And the inverse relation:
 
 ```php
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class Item extends Eloquent {
 
@@ -743,7 +743,7 @@ class Item extends Eloquent {
 The belongsToMany relation will not use a pivot "table", but will push id's to a __related_ids__ attribute instead. This makes the second parameter for the belongsToMany method useless. If you want to define custom keys for your relation, set it to `null`:
 
 ```php
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class User extends Eloquent {
 
@@ -765,7 +765,7 @@ If you want to embed models, rather than referencing them, you can use the `embe
 **REMEMBER**: these relations return Eloquent collections, they don't return query builder objects!
 
 ```php
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class User extends Eloquent {
 
@@ -842,7 +842,7 @@ Embedded relations will return a Collection of embedded items instead of a query
 The embedsOne relation is similar to the EmbedsMany relation, but only embeds a single model.
 
 ```php
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class Book extends Eloquent {
 
@@ -890,12 +890,12 @@ $book->author()->save($newAuthor);
 
 ### MySQL Relations
 
-If you're using a hybrid MongoDB and SQL setup, you're in luck! The model will automatically return a MongoDB- or SQL-relation based on the type of the related model. Of course, if you want this functionality to work both ways, your SQL-models will need use the `Jenssegers\Mongodb\Eloquent\HybridRelations` trait. Note that this functionality only works for hasOne, hasMany and belongsTo relations.
+If you're using a hybrid MongoDB and SQL setup, you're in luck! The model will automatically return a MongoDB- or SQL-relation based on the type of the related model. Of course, if you want this functionality to work both ways, your SQL-models will need use the `jenssegers\Mongodb\Eloquent\HybridRelations` trait. Note that this functionality only works for hasOne, hasMany and belongsTo relations.
 
 Example SQL-based User model:
 
 ```php
-use Jenssegers\Mongodb\Eloquent\HybridRelations;
+use jenssegers\Mongodb\Eloquent\HybridRelations;
 
 class User extends Eloquent {
 
@@ -914,7 +914,7 @@ class User extends Eloquent {
 And the Mongodb-based Message model:
 
 ```php
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class Message extends Eloquent {
 

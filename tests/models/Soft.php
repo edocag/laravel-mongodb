@@ -1,7 +1,7 @@
 <?php
 
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
-use Jenssegers\Mongodb\Eloquent\SoftDeletes;
+use edocag\Mongodb\Eloquent\Model as Eloquent;
+use edocag\Mongodb\Eloquent\SoftDeletes;
 
 class Soft extends Eloquent
 {

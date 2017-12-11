@@ -18,7 +18,7 @@ class QueueTest extends TestCase
 
         // Get and reserve the test job (next available)
         $job = Queue::pop('test');
-        $this->assertInstanceOf(Jenssegers\Mongodb\Queue\MongoJob::class, $job);
+        $this->assertInstanceOf(edocag\Mongodb\Queue\MongoJob::class, $job);
         $this->assertEquals(1, $job->isReserved());
         $this->assertEquals(json_encode([
             'displayName' => 'test',

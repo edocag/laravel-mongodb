@@ -1,12 +1,12 @@
 {
-    "name": "jenssegers/mongodb",
+    "name": "edocag/mongodb",
     "description": "A MongoDB based Eloquent model and Query builder for Laravel (Moloquent)",
     "keywords": ["laravel","eloquent","mongodb","mongo","database","model","moloquent"],
-    "homepage": "https://github.com/jenssegers/laravel-mongodb",
+    "homepage": "https://github.com/edocag/laravel-mongodb",
     "authors": [
         {
             "name": "Jens Segers",
-            "homepage": "https://jenssegers.com"
+            "homepage": "https://edocag.com"
         }
     ],
     "license" : "MIT",
@@ -26,7 +26,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Jenssegers\\Mongodb": "src/"
+            "edocag\\Mongodb": "src/"
         }
     },
     "autoload-dev": {
@@ -37,14 +37,14 @@
         ]
     },
     "suggest": {
-        "jenssegers/mongodb-session": "Add MongoDB session support to Laravel-MongoDB",
-        "jenssegers/mongodb-sentry": "Add Sentry support to Laravel-MongoDB"
+        "edocag/mongodb-session": "Add MongoDB session support to Laravel-MongoDB",
+        "edocag/mongodb-sentry": "Add Sentry support to Laravel-MongoDB"
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Jenssegers\\Mongodb\\MongodbServiceProvider",
-                "Jenssegers\\Mongodb\\MongodbQueueServiceProvider"
+                "edocag\\Mongodb\\MongodbServiceProvider",
+                "edocag\\Mongodb\\MongodbQueueServiceProvider"
             ]
         }
     }
